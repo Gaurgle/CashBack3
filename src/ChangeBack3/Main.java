@@ -1,6 +1,10 @@
 package ChangeBack3;
 
+import javax.swing.*;
 import java.util.LinkedHashMap;
+import java.util.Scanner;
+
+import static javax.swing.JOptionPane.showInputDialog;
 
 public class Main {
 
@@ -19,20 +23,35 @@ public class Main {
         dagensKassa.put("1", 94);
 
 
-        Kassa kassa = new Kassa(dagensKassa) {
-            @Override
-            public void addMoney(String valör, Integer antal) {
-                super.addMoney(valör, antal);
-            }
-            @Override
-            public void removeMoney(String valör, Integer antal) {
-                super.removeMoney(valör, antal);
-            }
-            @Override
-            public void showKassa() {
-                super.showKassa();
-            }
-        };
+        Kassa kassa = new Kassa(dagensKassa);
+//        kassa.showKassa();
+        kassa.addMoney("500", 30);
 
+
+        String indata = showInputDialog("Ange pris & betalmedel (ex: 99 100)");
+        Scanner sc = new Scanner(indata);
+        double price = sc.nextInt();
+        double cash = sc.nextInt();
+
+        Transaktion köp1 = new Transaktion(price, cash);
+
+        try {
+            LinkedHashMap<String, Integer> växel = köp1.växelTillbaka(cash, price, dagensKassa);
+            kassa.showKassa();
+            System.out.println("\nVäxel tillbaka:");
+            System.out.printf("%-10s %-10s%n", "Valör", "Antal");
+            System.out.println("----------------");
+            for (String valör : växel.keySet()) {
+                int antal = växel.get(valör);
+                System.out.printf("%-10s %-3d st%n", valör +"kr", +växel.get(valör));
+                kassa.removeMoney(valör, antal);
+            }
+            System.out.println();
+
+            kassa.showKassa();
+        } catch (ChangeBackException e) {
+            e.printStackTrace();
+            System.out.println("Fel " + e.getMessage());
+        }
     }
 }

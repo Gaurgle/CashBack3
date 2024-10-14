@@ -15,21 +15,24 @@ public class Kassa {
         kassa.put(valör, kassa.getOrDefault(valör, 0)+antal);
     }
 
-    public void removeMoney(String valör, Integer antal){
-        if (kassa.containsKey(valör)){
-            int nuvarandeKassa = kassa.get(valör);
-            kassa.put(valör, Math.max(nuvarandeKassa - antal, 0));
-        }
+    // hittepå grej, fattar ej.
+    public void removeMoney(String valör, Integer antal) {
+        kassa.compute(valör, (key, oldValue) -> {
+            if (oldValue == null || oldValue <= 0) {
+                return 0;
+            } else {
+                return Math.max(oldValue - antal, 0);
+            }
+        });
     }
 
     public void showKassa() {
-        System.out.printf("%-10s %-10s%n", "Valör:", "Antal:");
+        System.out.println("Nuvarande kassa:");
+        System.out.printf("%-10s %-10s%n", "Valör", "Antal");
         System.out.println("-----------------");
         for (Map.Entry<String, Integer> valör : kassa.entrySet()) {
-            System.out.printf("%-10s %-10d%n", valör.getKey(), valör.getValue());
-
+            System.out.printf("%-10s %-3d st%n", valör.getKey() +"kr", valör.getValue());
         }
-
     }
     public LinkedHashMap<String, Integer> getKassa() {
         return kassa;

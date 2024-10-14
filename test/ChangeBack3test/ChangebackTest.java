@@ -1,5 +1,8 @@
-package ChangeBack3;
+package ChangeBack3test;
 
+import ChangeBack3.ChangeBackException;
+import ChangeBack3.Kassa;
+import ChangeBack3.Transaktion;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedHashMap;
@@ -31,7 +34,6 @@ public class ChangebackTest {
         dagensKassa.put("2", 41);
         dagensKassa.put("1", 94);
 
-
         assertFalse(kassaTest.getKassa().isEmpty());
 
         System.out.printf("%-10s %-10s%n", "Valör:", "Antal:");
@@ -39,5 +41,38 @@ public class ChangebackTest {
         for (Map.Entry<String, Integer> valör : kassaTest.getKassa().entrySet()){
             System.out.printf("%-10s %-10s%n", valör.getKey(), valör.getValue());
         }
+    }
+
+    @Test
+    public void valörerTillbaka() throws ChangeBackException {
+        Transaktion transaction = new Transaktion(8.0, 10.0);
+
+        LinkedHashMap<String, Integer> valörer = new LinkedHashMap<>();
+        valörer.put("1000", 5);
+        valörer.put("500", 9);
+        valörer.put("200", 11);
+        valörer.put("100", 18);
+        valörer.put("50", 21);
+        valörer.put("10", 40);
+        valörer.put("5", 50);
+        valörer.put("2", 41);
+        valörer.put("1", 94);
+
+        LinkedHashMap<String, Integer> förväntadVäxel = new LinkedHashMap<>();
+        förväntadVäxel.put("1000", 5);
+        förväntadVäxel.put("500", 9);
+
+        LinkedHashMap<String, Integer> resultat = transaction.växelTillbaka(1000, 760, valörer);
+
+        assertEquals(förväntadVäxel, resultat);
+
+    }
+
+    @Test
+    void changeBack() {
+    }
+
+    @Test
+    void växelTillbaka() {
     }
 }

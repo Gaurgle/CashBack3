@@ -17,14 +17,17 @@ med detta än att inte skriva nån kod alls.
 Ledtrådar:
 Innan du sätter igång, fundera över vad som
 måste hända:
-• Du måste räkna ut växeln (utifrån pris och lämnade pengar)
-• Du måste hålla reda på vilka valörer som finns
-• Rekommendation är att lägga dessa värden i en lista som du
+x• Du måste räkna ut växeln (utifrån pris och lämnade pengar)
+x• Du måste hålla reda på vilka valörer som finns
+x• Rekommendation är att lägga dessa värden i en lista som du
 itererar över när du räknar ut hur mycket av varje valör
 som ska ges tillbaka
+
 • Du måste räkna ut hur många enheter av en valör som ska
 ges i växeln
-• När du har räknat ut hur många antal (y) av valör x som
+
+
+• När du har räknat ut hur många antal y av valör x som
 ska ges i växel måste du subtrahera
 dessa från växeln inför nästa iteration Ex: antag att växeln
 är 654, då ska du ge 1st 500- lappar, sen måste du dra av 500
