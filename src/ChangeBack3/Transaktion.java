@@ -1,11 +1,11 @@
 package ChangeBack3;
 
-public class ChangeBack3 {
+public class Transaktion {
 
     double cash;
     double price;
 
-    public ChangeBack3(double price, double cash) {
+    public Transaktion(double price, double cash) {
         this.cash = cash;
         this.price = price;
 

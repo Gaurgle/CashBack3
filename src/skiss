@@ -1,0 +1,17 @@
+indata;
+1. totalen för köpet,
+2. summa kontanter man ger.
+
+Ge tillbaka minsta antal typer av valutor
+int VALUE 500, 200, osv kan vara ett sätt att hålla koll.
+
+Spara valörerna i en lista? som man kan iterera över.
+Behöve en tillfällig vriabel för växel tillbaka, då kan vi checka hela tiden mot den variabeln för att se vad den högsta tillgängliga
+valören är, och subtrahera den från växel tillbaka.
+Det känns ändå som att en hashmap med valören är bättre.
+
+Kan göra en metod som lägger till valörer i kassan för dagen, samt en metod som räknar och skriver ut hur kassan ser ut.
+
+
+räkna ut växel
+håll koll på valörerna med hashmap?
