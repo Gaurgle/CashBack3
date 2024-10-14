@@ -14,7 +14,4 @@ public class Transaktion {
     public double changeBack(){
         return cash - price;
     }
-
-
-
 }

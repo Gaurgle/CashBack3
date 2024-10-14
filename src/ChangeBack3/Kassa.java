@@ -1,30 +1,37 @@
 package ChangeBack3;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Kassa {
 
-        // LinkedHashMap håller ordningen densamma.
-        protected static LinkedHashMap<String, Integer> kassa = new LinkedHashMap<>(){{
-            put("1000", 5);
-            put("500", 7);
-            put("200", 9);
-            put("100", 10);
-            put("50", 11);
-            put("20", 12);
-            put("10", 13);
-            put("5", 14);
-            put("2", 15);
-            put("1", 16);
-        }};
+    // LinkedHashMap håller ordningen densamma.
+    private LinkedHashMap<String, Integer> kassa;
+    public Kassa(LinkedHashMap<String, Integer> kassa) {
+        this.kassa = kassa;
+    }
+
+    public void addMoney(String valör, Integer antal){
+        kassa.put(valör, kassa.getOrDefault(valör, 0)+antal);
+    }
+
+    public void removeMoney(String valör, Integer antal){
+        if (kassa.containsKey(valör)){
+            int nuvarandeKassa = kassa.get(valör);
+            kassa.put(valör, Math.max(nuvarandeKassa - antal, 0));
+        }
+    }
 
     public void showKassa() {
-        for (String key : kassa.keySet()) {
-            System.out.println(kassa.get(key));
+        System.out.printf("%-10s %-10s%n", "Valör:", "Antal:");
+        System.out.println("-----------------");
+        for (Map.Entry<String, Integer> valör : kassa.entrySet()) {
+            System.out.printf("%-10s %-10d%n", valör.getKey(), valör.getValue());
 
         }
 
     }
-
+    public LinkedHashMap<String, Integer> getKassa() {
+        return kassa;
+    }
 }
