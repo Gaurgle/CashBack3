@@ -8,7 +8,7 @@ import static javax.swing.JOptionPane.showInputDialog;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ChangeBackException {
 
         LinkedHashMap<String, Integer> dagensKassa = new LinkedHashMap<>();
         dagensKassa.put("1000", 5);
@@ -27,7 +27,6 @@ public class Main {
 //        kassa.showKassa();
         kassa.addMoney("500", 30);
 
-
         String indata = showInputDialog("Ange pris & betalmedel (ex: 99 100)");
         Scanner sc = new Scanner(indata);
         double price = sc.nextInt();
@@ -38,7 +37,7 @@ public class Main {
         try {
             LinkedHashMap<String, Integer> växel = köp1.växelTillbaka(cash, price, dagensKassa);
             kassa.showKassa();
-            System.out.println("\nVäxel tillbaka:");
+            System.out.println("\nVäxel tillbaka: " +köp1.changeBack());
             System.out.printf("%-10s %-10s%n", "Valör", "Antal");
             System.out.println("----------------");
             for (String valör : växel.keySet()) {

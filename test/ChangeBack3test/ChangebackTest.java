@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ChangebackTest {
 
     @Test
-    public void testChangeBack(){
+    public void testChangeBack() throws ChangeBackException {
         Transaktion transaction = new Transaktion(8.0, 10.0);
 
         assertEquals(2.0, transaction.changeBack());

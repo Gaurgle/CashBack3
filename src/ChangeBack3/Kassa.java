@@ -15,9 +15,9 @@ public class Kassa {
         kassa.put(valör, kassa.getOrDefault(valör, 0)+antal);
     }
 
-    // hittepå grej, fattar ej.
+    // IJ föreslog compute, FP?
     public void removeMoney(String valör, Integer antal) {
-        kassa.compute(valör, (key, oldValue) -> {
+        kassa.compute(valör, (_, oldValue) -> {
             if (oldValue == null || oldValue <= 0) {
                 return 0;
             } else {
